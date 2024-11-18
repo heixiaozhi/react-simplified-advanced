@@ -20,14 +20,13 @@ export function DialogModal({ show, onClose, children }) {
   // = 无[]的useEffect
   useEffect(() => {
     const dialog = dialogRef.current
-    console.log('111')
     // if (dialog === null) return;
     // dialog el有一个close事件，就是esc的时候触发
     dialog.addEventListener('close', onClose)
     return () => {
       dialog.removeEventListener('close', onClose)
     }
-  }, [onClose]) // 应该使用[]会更好，不然每次父组件内容不一样的时候，都会触发添加多次
+  }, []) // 应该使用[]会更好，[close]不然每次父组件内容不一样的时候，都会触发添加多次
 
   return createPortal(
     <dialog ref={dialogRef}>{children}</dialog>,
